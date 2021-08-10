@@ -1,0 +1,259 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "bioauth/libBioAuth.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"add_dependencies",
+			"add_compile_options",
+			"target_link_libraries",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"bioauth/CMakeLists.txt",
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 37,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 47,
+				"parent" : 0
+			},
+			{
+				"file" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 20,
+				"parent" : 3
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 38,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 29,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " "
+				},
+				{
+					"backtrace" : 4,
+					"fragment" : "-fPIC"
+				},
+				{
+					"fragment" : "-std=gnu++11"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"define" : "CONFIG_FILE=/etc/biometric-auth/ukui-biometric.conf"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "QT_CORE_LIB"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "QT_DBUS_LIB"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "QT_NO_DEBUG"
+				},
+				{
+					"define" : "UKUI_BIOMETRIC=/usr/share/ukui-biometric"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"path" : "/home/liudun/ukui-biometric-auth/ukui-biometric-auth/build/bioauth"
+				},
+				{
+					"path" : "/home/liudun/ukui-biometric-auth/ukui-biometric-auth/bioauth"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtWidgets"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtGui"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/usr/include/libmount"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/usr/include/blkid"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/usr/include/glib-2.0"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/usr/lib/x86_64-linux-gnu/glib-2.0/include"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/home/liudun/ukui-biometric-auth/ukui-biometric-auth/bioauth/include"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/home/liudun/ukui-biometric-auth/ukui-biometric-auth/bioauth/../common"
+				},
+				{
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "/usr/include/x86_64-linux-gnu/qt5"
+				},
+				{
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtCore"
+				},
+				{
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++"
+				},
+				{
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtDBus"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "bioauth_i18n::@e455a4c353b8390c70ef"
+		}
+	],
+	"id" : "BioAuth::@e455a4c353b8390c70ef",
+	"name" : "BioAuth",
+	"nameOnDisk" : "libBioAuth.a",
+	"paths" : 
+	{
+		"build" : "bioauth",
+		"source" : "bioauth"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				5,
+				6
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/bioauth/include/moc_bioauth.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/bioauth/include/moc_biodevices.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "bioauth/src/bioauth.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "bioauth/src/biodevices.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "bioauth/src/biotypes.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/bioauth/include/moc_bioauth.cpp.rule",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/bioauth/include/moc_biodevices.cpp.rule",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

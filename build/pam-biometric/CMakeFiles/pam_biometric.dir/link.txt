@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC   -shared -Wl,-soname,pam_biometric.so -o pam_biometric.so CMakeFiles/pam_biometric.dir/pam_biometric.c.o CMakeFiles/pam_biometric.dir/logger.c.o  -lpam 

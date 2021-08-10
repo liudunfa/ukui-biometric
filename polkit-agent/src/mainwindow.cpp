@@ -25,17 +25,22 @@
 #include <QPixmap>
 #include <QFontMetrics>
 #include <QtMath>
-
+#include <QAction>
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <pwd.h>
+#include <QScroller>
+
 #include <libintl.h>
 #include <locale.h>
 
+#include <QHBoxLayout>
 #include "generic.h"
 #define _(string) gettext(string)
 
+extern void qt_blurImage(QImage &blurImage, qreal radius, bool quality, int transposed);
+extern int h;
 MainWindow::MainWindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainWindow),
@@ -125,12 +130,13 @@ MainWindow::MainWindow(QWidget *parent) :
     setStyleSheet(qssFile.readAll());
     qssFile.close();
 
-    ui->cmbUsers->hide();
-    ui->widgetDetails->hide();
-    ui->btnDetails->setIcon(QIcon(":/image/assets/arrow_right.svg"));
-    ui->btnDetails->hide();
+    //ui->cmbUsers->hide();
+    //ui->widgetDetails->hide();
+    //ui->btnDetails->setIcon(QIcon(":/image/assets/arrow_right.svg"));
+    //ui->btnDetails->hide();
     ui->lePassword->installEventFilter(this);
     switchWidget(UNDEFINED);
+    editIcon();
 }
 
 MainWindow::~MainWindow()
@@ -153,6 +159,47 @@ void MainWindow::closeEvent(QCloseEvent *event)
     emit canceled();
 
     return QWidget::closeEvent(event);
+}
+
+void MainWindow::paintEvent(QPaintEvent *event)
+{
+
+    Q_UNUSED(event);
+    QStyleOption *option = new QStyleOption();
+    QPainter p(this);
+    p.setRenderHint(QPainter::Antialiasing);
+    QPainterPath rectPath;
+    rectPath.addRoundedRect(this->rect().adjusted(0,0,0,0),0,0);
+    // 画一个黑底
+    QPixmap pixmap(this->rect().size());
+    pixmap.fill(Qt::transparent);
+    QPainter pixmapPainter(&pixmap);
+    pixmapPainter.setRenderHint(QPainter::Antialiasing);
+    pixmapPainter.setPen(Qt::transparent);
+    pixmapPainter.setBrush(QColor(0,0,0,100));
+    pixmapPainter.drawPath(rectPath);
+    pixmapPainter.end();
+
+    // 模糊这个黑底
+    QImage img = pixmap.toImage();
+    qt_blurImage(img, 10, false, false);
+
+    // 挖掉中心
+    pixmap = QPixmap::fromImage(img);
+    QPainter pixmapPainter2(&pixmap);
+    pixmapPainter2.setRenderHint(QPainter::Antialiasing);
+    pixmapPainter2.setCompositionMode(QPainter::CompositionMode_Clear);
+    pixmapPainter2.setPen(Qt::transparent);
+    pixmapPainter2.setBrush(Qt::transparent);
+    pixmapPainter2.drawPath(rectPath);
+
+    // 绘制阴影
+    p.drawPixmap(this->rect(), pixmap, pixmap.rect());
+
+    // 绘制一个背景
+    p.save();
+    p.fillPath(rectPath,option->palette.color(QPalette::Base));
+    p.restore();
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
@@ -215,7 +262,7 @@ int MainWindow::enable_biometric_authentication()
 
 void MainWindow::on_btnDetails_clicked()
 {
-    if(ui->widgetDetails->isHidden()) {
+    /*if(ui->widgetDetails->isHidden()) {
         ui->widgetDetails->show();
         ui->btnDetails->setIcon(QIcon(":/image/assets/arrow_down.svg"));
 //        resize(width(), height() + ui->widgetDetails->height());
@@ -224,7 +271,7 @@ void MainWindow::on_btnDetails_clicked()
         ui->widgetDetails->hide();
         ui->btnDetails->setIcon(QIcon(":/image/assets/arrow_right.svg"));
 //        resize(width(), height() - ui->widgetDetails->height());
-    }
+    }*/
     adjustSize();
 }
 
@@ -239,6 +286,35 @@ void MainWindow::on_btnAuth_clicked()
 }
 
 /*** pagePassword ***/
+
+void MainWindow::editIcon()
+{
+    m_modeButton = new QPushButton(ui->lePassword);
+    m_modeButton->setObjectName(QStringLiteral("echoModeButton"));
+    m_modeButton->setCheckable(true);
+    m_modeButton->setFocusPolicy(Qt::NoFocus);
+    m_modeButton->setCursor(Qt::PointingHandCursor);
+    connect(m_modeButton, &QPushButton::clicked, this, [&](bool checked){
+        setType(checked ? QLineEdit::Normal : QLineEdit::Password);
+    });
+    QHBoxLayout *layout = new QHBoxLayout(ui->lePassword);
+    //layout->setSpacing(0);
+    layout->addStretch();
+    layout->addWidget(m_modeButton);
+    layout->setContentsMargins(0, 0, 0, 0);
+
+
+}
+
+void MainWindow::setType(QLineEdit::EchoMode type)
+{
+    ui->lePassword->setEchoMode(type);
+    if(type == 0)
+       m_modeButton->setChecked(true);
+    else
+       m_modeButton->setChecked(false);
+}
+
 
 void MainWindow::on_lePassword_returnPressed()
 {
@@ -285,12 +361,14 @@ void MainWindow::setIcon(const QString &iconName)
     painter.end();
 
     setWindowIcon(icon);
-    ui->lblIcon->setPixmap(icon);
+    //ui->lblIcon->setPixmap(icon);
 }
 
 void MainWindow::setHeader(const QString &text)
 {
     ui->lblHeader->setText(text);
+    ui->lblHeader->adjustSize();
+    ui->lblHeader->height();
     ui->lblContent->setText(tr("An application is attempting to perform an action that requires privileges."
                             " Authentication is required to perform this action."));
 
@@ -324,7 +402,7 @@ void MainWindow::setUsers(const QStringList &usersList)
 
     ui->cmbUsers->show();
 }
-
+/*
 void MainWindow::setDetails(const QString &subPid, const QString &callerPid, const QString &actionId,
                             const QString &actionDesc, const QString vendorName,
                             const QString vendorUrl)
@@ -336,7 +414,7 @@ void MainWindow::setDetails(const QString &subPid, const QString &callerPid, con
     QString vendor = QString("<a href=\"%1\">%2").arg(vendorUrl).arg(vendorName);
     ui->lblVendor->setText(vendor);
 }
-
+*/
 void MainWindow::setPrompt(const QString &text, bool echo)
 {
     QString prompt = text;
@@ -350,10 +428,11 @@ void MainWindow::setPrompt(const QString &text, bool echo)
         }
     }
 
-    ui->lblPrompt->setText(prompt);
+    //ui->lblPrompt->setText(prompt);
     ui->lePassword->setEchoMode(echo ? QLineEdit::Normal : QLineEdit::Password);
     switchWidget(PASSWORD);
 }
+
 
 /*
     转换pam英文提示，目前转换的就3个翻译
@@ -399,10 +478,26 @@ QString MainWindow::check_is_pam_message(QString text)
     return QString(str);
 
 }
+void MainWindow::paintEvent1(QPaintEvent *event)
+{
+    QPainter *paint=new QPainter;
+    paint->begin(this);
+    paint->setPen(QPen(Qt::blue,4,Qt::DashLine));//设置画笔形式
+    paint->setBrush(QBrush(Qt::red,Qt::SolidPattern));//设置画刷形式
+    paint->drawRect(33,153,352,36);
+    paint->end();
 
-void MainWindow::setMessage(const QString &text)
+}
+void MainWindow::setMessage(const QString &text,situation situat)
 {
     // QString message = this->check_is_pam_message(text);
+    if(situat == ERROR){
+        ui->lblMessage->setStyleSheet("color:red;");
+        QPaintEvent *event;
+        paintEvent1(event);
+    }else if(situat == TRUE){
+        ui->lblMessage->setStyleSheet("");
+    }
     ui->lblMessage->setText(text);
 }
 
@@ -410,8 +505,10 @@ void MainWindow::setAuthResult(bool result, const QString &text)
 {
     QString message = text;
 
-    if(!result && text.isEmpty())
-        message = tr("Authentication failed, please try again.");
+    if(!result)
+        setMessage("Authentication failed, please try again.", ERROR);
+    //if(text.isEmpty())
+        //setMessage("Authentication failed, please try again.", 0);
 
     if(authMode == PASSWORD)
         ui->lblMessage->setText(message);
@@ -568,13 +665,17 @@ void MainWindow::switchWidget(Mode mode)
     switch(mode){
     case PASSWORD:
         setMinimumWidth(420);
+        setMaximumWidth(420);
+        setMinimumHeight(233+ui->lblHeader->height());
+        setMaximumHeight(233+ui->lblHeader->height());
         ui->widgetPasswdAuth->show();
         ui->lePassword->setFocus();
         ui->lePassword->setAttribute(Qt::WA_InputMethodEnabled, false);
         ui->btnAuth->show();
         break;
     case BIOMETRIC:
-        setMaximumWidth(380);
+        setMinimumSize(420,405);
+        setMaximumSize(420,442);
         widgetBioAuth->show();
         break;
     case DEVICES:

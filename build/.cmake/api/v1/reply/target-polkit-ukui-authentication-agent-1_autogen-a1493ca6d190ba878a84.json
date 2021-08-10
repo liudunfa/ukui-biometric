@@ -1,0 +1,69 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"polkit-agent/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 0,
+			"id" : "BioAuthWidgets::@e455a4c353b8390c70ef"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "polkit_i18n::@d302c3391af5bda6d600"
+		}
+	],
+	"id" : "polkit-ukui-authentication-agent-1_autogen::@d302c3391af5bda6d600",
+	"isGeneratorProvided" : true,
+	"name" : "polkit-ukui-authentication-agent-1_autogen",
+	"paths" : 
+	{
+		"build" : "polkit-agent",
+		"source" : "polkit-agent"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				1
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/polkit-agent/CMakeFiles/polkit-ukui-authentication-agent-1_autogen",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/polkit-agent/CMakeFiles/polkit-ukui-authentication-agent-1_autogen.rule",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "UTILITY"
+}

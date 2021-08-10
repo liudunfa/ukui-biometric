@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<policyconfig>
+
+	<action id="org.freedesktop.policykit.pkexec.bioctl">
+		<description>Run the biometric authentication control tool</description>
+		<description xml:lang="zh">运行生物识别认证控制工具</description>
+		<message>Authentication is required to enable or disable biometric authentication</message>
+		<message xml:lang="zh">开启或关闭生物识别认证需要进行身份验证</message>
+		<icon_name>stock_person</icon_name>
+		<defaults>
+			<allow_any>no</allow_any>
+			<allow_inactive>no</allow_inactive>
+			<allow_active>yes</allow_active>
+		</defaults>
+        <annotate key="org.freedesktop.policykit.exec.path">/usr/bin/bioctl-helper</annotate>
+	</action>
+
+</policyconfig>

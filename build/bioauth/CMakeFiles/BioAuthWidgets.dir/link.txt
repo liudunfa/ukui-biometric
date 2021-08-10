@@ -1,0 +1,2 @@
+/usr/bin/ar qc libBioAuthWidgets.a  CMakeFiles/BioAuthWidgets.dir/include/moc_bioauthwidget.cpp.o CMakeFiles/BioAuthWidgets.dir/include/moc_biodeviceswidget.cpp.o CMakeFiles/BioAuthWidgets.dir/include/moc_giodbus.cpp.o CMakeFiles/BioAuthWidgets.dir/src/bioauthwidget.cpp.o CMakeFiles/BioAuthWidgets.dir/src/biodeviceswidget.cpp.o CMakeFiles/BioAuthWidgets.dir/src/giodbus.cpp.o
+/usr/bin/ranlib libBioAuthWidgets.a

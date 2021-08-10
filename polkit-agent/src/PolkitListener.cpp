@@ -113,14 +113,15 @@ void PolkitListener::initiateAuthentication(
     /* Create the polkit window */
 
     mainWindow = new MainWindow;
+    mainWindow->setWindowFlags(Qt::WindowCloseButtonHint | Qt::WindowStaysOnTopHint);
     mainWindow->setIcon(iconName);
     mainWindow->setHeader(message);
     mainWindow->setUsers(usersList);
-    mainWindow->setDetails(subjectPid, callerPid,
-                           actionDesc.actionId(),
-                           actionDesc.description(),
-                           actionDesc.vendorName(),
-                           actionDesc.vendorUrl());
+    //mainWindow->setDetails(subjectPid, callerPid,
+                          // actionDesc.actionId(),
+                           //actionDesc.description(),
+                          // actionDesc.vendorName(),
+                         //  actionDesc.vendorUrl());
 
     /* set the position of the mainwindow */
     QPoint pos = QCursor::pos();

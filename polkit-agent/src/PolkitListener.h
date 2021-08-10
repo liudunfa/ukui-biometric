@@ -19,7 +19,6 @@
 #define POLKITLISTENER_H
 
 #include <PolkitQt1/Agent/Listener>
-#include <QPointer>
 
 #include "mainwindow.h"
 
@@ -57,6 +56,7 @@ private:
 	PolkitQt1::Agent::AsyncResult *result;
 	QString cookie;
     MainWindow *mainWindow;
+
 
 private slots:
 

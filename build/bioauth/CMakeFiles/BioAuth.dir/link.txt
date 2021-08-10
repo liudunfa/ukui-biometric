@@ -1,0 +1,2 @@
+/usr/bin/ar qc libBioAuth.a  CMakeFiles/BioAuth.dir/include/moc_bioauth.cpp.o CMakeFiles/BioAuth.dir/include/moc_biodevices.cpp.o CMakeFiles/BioAuth.dir/src/bioauth.cpp.o CMakeFiles/BioAuth.dir/src/biodevices.cpp.o CMakeFiles/BioAuth.dir/src/biotypes.cpp.o
+/usr/bin/ranlib libBioAuth.a

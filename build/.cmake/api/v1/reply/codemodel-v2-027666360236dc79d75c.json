@@ -1,0 +1,254 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5
+					],
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.6"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "bioauth",
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.6"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "bioauth",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						5
+					]
+				},
+				{
+					"build" : "bioauth-bin",
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.6"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "bioauth-bin",
+					"targetIndexes" : 
+					[
+						2,
+						3,
+						4
+					]
+				},
+				{
+					"build" : "pam-biometric",
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.6"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "pam-biometric",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "polkit-agent",
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.6"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 3,
+					"source" : "polkit-agent",
+					"targetIndexes" : 
+					[
+						7,
+						8,
+						9
+					]
+				},
+				{
+					"build" : "images",
+					"hasInstallRule" : true,
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.6"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "images"
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3
+					],
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						5
+					],
+					"name" : "ukui-biometric-auth",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						5
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "bioauth-bin",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						2,
+						3,
+						4
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3
+					],
+					"name" : "pam_biometric",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						4
+					],
+					"name" : "ukui-polkit-agent",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						7,
+						8,
+						9
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "BioAuth::@e455a4c353b8390c70ef",
+					"jsonFile" : "target-BioAuth-5653f926fc998d08a712.json",
+					"name" : "BioAuth",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "BioAuthWidgets::@e455a4c353b8390c70ef",
+					"jsonFile" : "target-BioAuthWidgets-551f6c150280731fb72f.json",
+					"name" : "BioAuthWidgets",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "bioauth::@ddae27ad410b4d7e993a",
+					"jsonFile" : "target-bioauth-99c0bc96a00bb1675e40.json",
+					"name" : "bioauth",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "bioauth-bin_i18n::@ddae27ad410b4d7e993a",
+					"jsonFile" : "target-bioauth-bin_i18n-8dbed2b6852b1d4378f4.json",
+					"name" : "bioauth-bin_i18n",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "bioauth_autogen::@ddae27ad410b4d7e993a",
+					"jsonFile" : "target-bioauth_autogen-19c71768afa84f62b587.json",
+					"name" : "bioauth_autogen",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "bioauth_i18n::@e455a4c353b8390c70ef",
+					"jsonFile" : "target-bioauth_i18n-9beb23273221437cd057.json",
+					"name" : "bioauth_i18n",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "pam_biometric::@049fb2c567cbc86d273b",
+					"jsonFile" : "target-pam_biometric-d17d14e37dfcc3242001.json",
+					"name" : "pam_biometric",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "polkit-ukui-authentication-agent-1::@d302c3391af5bda6d600",
+					"jsonFile" : "target-polkit-ukui-authentication-agent-1-b32e8686108aa85784dd.json",
+					"name" : "polkit-ukui-authentication-agent-1",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "polkit-ukui-authentication-agent-1_autogen::@d302c3391af5bda6d600",
+					"jsonFile" : "target-polkit-ukui-authentication-agent-1_autogen-a1493ca6d190ba878a84.json",
+					"name" : "polkit-ukui-authentication-agent-1_autogen",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "polkit_i18n::@d302c3391af5bda6d600",
+					"jsonFile" : "target-polkit_i18n-bb6556af60d577afdcd1.json",
+					"name" : "polkit_i18n",
+					"projectIndex" : 3
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/liudun/ukui-biometric-auth/ukui-biometric-auth/build",
+		"source" : "/home/liudun/ukui-biometric-auth/ukui-biometric-auth"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

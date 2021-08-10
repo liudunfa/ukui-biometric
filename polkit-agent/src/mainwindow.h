@@ -19,9 +19,11 @@
 #define MAINWINDOW_H
 
 #include <QWidget>
-#include <QLabel>
+#include <QPointer>
+#include <QPushButton>
 #include "biometric.h"
 #include "users.h"
+#include <QLineEdit>
 
 namespace Ui {
 class MainWindow;
@@ -35,6 +37,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void closeEvent(QCloseEvent *event);
+    void paintEvent(QPaintEvent *event);
+    void paintEvent1(QPaintEvent *event);
     bool eventFilter(QObject *obj, QEvent *event);
 
     enum Mode{UNDEFINED, PASSWORD, BIOMETRIC, DEVICES};
@@ -46,12 +50,15 @@ public:
                     const QString &actionId, const QString &actionDesc,
                     const QString vendorName, const QString vendorUrl);
     void setPrompt(const QString &text, bool echo);
-    void setMessage(const QString &text);
+    enum situation{TRUE, ERROR};
+    void setMessage(const QString &text, situation situat = TRUE);
     void setAuthResult(bool result, const QString &text="");
     void clearEdit();
     void switchAuthMode(Mode mode);
     void setDoubleAuth(bool val);
     void stopDoubleAuth();
+    void setType(QLineEdit::EchoMode type = QLineEdit::Password);
+
     QString check_is_pam_message(QString text);
 
 private:    
@@ -61,7 +68,7 @@ private:
     void startBioAuth();
     void switchWidget(Mode mode);
     int enable_biometric_authentication();
-
+    void editIcon();
 private slots:
     void on_btnDetails_clicked();
     void on_lePassword_returnPressed();
@@ -94,7 +101,7 @@ private:
     QMap<qint32,int> m_failMap;
     int  maxFailedTimes;
     bool isHiddenSwitchButton;
-
+    QPushButton *m_modeButton;
 };
 
 #endif // MAINWINDOW_H

@@ -27,6 +27,7 @@ class SessionManager : public QObject
     Q_OBJECT
 public:
     explicit SessionManager(QObject *parent = nullptr);
+    //void setType(QLineEdit::EchoMode type = QLineEdit::Password);
 
 signals:
 

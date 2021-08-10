@@ -1,0 +1,7 @@
+-I/home/liudun/ukui-biometric-auth/ukui-biometric-auth/bioauth
+-I/home/liudun/ukui-biometric-auth/ukui-biometric-auth/build/bioauth
+-DUKUI_BIOMETRIC=/usr/share/ukui-biometric
+-DCONFIG_FILE=/etc/biometric-auth/ukui-biometric.conf
+-o
+/home/liudun/ukui-biometric-auth/ukui-biometric-auth/build/bioauth/include/moc_bioauth.cpp
+/home/liudun/ukui-biometric-auth/ukui-biometric-auth/bioauth/include/bioauth.h
