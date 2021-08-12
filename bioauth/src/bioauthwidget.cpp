@@ -33,8 +33,8 @@ BioAuthWidget::BioAuthWidget(QWidget *parent) :
     bioAuth(nullptr)
 {
     ui->setupUi(this);
-    ui->btnRetry->setVisible(false);
-    ui->btnMore->setVisible(false);
+    //ui->btnRetry->setVisible(false);
+    //ui->btnMore->setVisible(false);
 }
 
 BioAuthWidget::~BioAuthWidget()
@@ -42,23 +42,23 @@ BioAuthWidget::~BioAuthWidget()
     delete ui;
 }
 
-void BioAuthWidget::emitSwithToPassword()
+void BioAuthWidget::emitSwitchToPassword()
 {
     Q_EMIT switchToPassword();
 }
 
 void BioAuthWidget::on_btnPasswdAuth_clicked()
 {
-    stopAuth();
+    //stopAuth();
     //Q_EMIT switchToPassword();
-    QTimer::singleShot(100,this,SLOT(emitSwithToPassword()));
+    //QTimer::singleShot(100,this,SLOT(emitSwitchToPassword()));
 }
 
 void BioAuthWidget::on_btnMore_clicked()
 {
     Q_EMIT selectDevice();
 }
-
+/*
 void BioAuthWidget::on_btnRetry_clicked()
 {
     if(bioAuth && !bioAuth->isAuthenticating()) {
@@ -66,7 +66,7 @@ void BioAuthWidget::on_btnRetry_clicked()
         bioAuth->startAuth();
     }
 }
-
+*/
 void BioAuthWidget::onBioAuthNotify(const QString &notifyMsg)
 {
     ui->lblBioNotify->setText(notifyMsg);
@@ -92,7 +92,7 @@ void BioAuthWidget::setMovie()
     ui->lblBioImage->setMovie(movie);
     movie->start();
 
-    ui->btnRetry->setVisible(false);
+    //ui->btnRetry->setVisible(false);
 
     qDebug() << "set movie " << moviePath;
 }
@@ -108,7 +108,7 @@ void BioAuthWidget::setImage()
                            Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
     ui->lblBioImage->setPixmap(pixmap);
 
-    ui->btnRetry->setVisible(true);
+    //ui->btnRetry->setVisible(true);
 
     qDebug() << "set pixmap " << typeString;
 }
@@ -131,12 +131,12 @@ void BioAuthWidget::onFrameWritten(int deviceId)
     QImage srcQImage = QImage((uchar*)(img.data), img.cols, img.rows, QImage::Format_RGB888);
     ui->lblBioImage->setPixmap(QPixmap::fromImage(srcQImage).scaled(ui->lblBioImage->size()));
 
-    ui->btnRetry->setVisible(false);
+    //ui->btnRetry->setVisible(false);
 }
 
 void BioAuthWidget::hidePasswdButton()
 {
-    ui->btnPasswdAuth->hide();
+    //ui->btnPasswdAuth->hide();
 }
 
 bool BioAuthWidget::isAuthenticating()
@@ -182,5 +182,5 @@ void BioAuthWidget::startAuth(uid_t uid, const DeviceInfo &device)
 
 void BioAuthWidget::setMoreDevices(bool hasMore)
 {
-    ui->btnMore->setVisible(hasMore);
+    //ui->btnMore->setVisible(hasMore);
 }

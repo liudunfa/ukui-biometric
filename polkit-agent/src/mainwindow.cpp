@@ -34,7 +34,7 @@
 
 #include <libintl.h>
 #include <locale.h>
-
+#include "bioauthwidget.h"
 #include <QHBoxLayout>
 #include "generic.h"
 #define _(string) gettext(string)
@@ -57,8 +57,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     widgetBioAuth = new BioAuthWidget(this);
     widgetBioDevices = new BioDevicesWidget(this);
-    ui->formLayout->addWidget(widgetBioAuth);
+    //ui->formLayout->addWidget(widgetBioAuth);
     ui->formLayout->addWidget(widgetBioDevices);
+    ui->bioAuthLayout->addWidget(widgetBioAuth);
     maxFailedTimes = bioDevices.getFailedTimes();
     isHiddenSwitchButton = bioDevices.GetHiddenSwitchButton();
 
@@ -328,6 +329,13 @@ void MainWindow::on_btnBioAuth_clicked()
     emit switchToBiometric();
     authMode = BIOMETRIC;
 }
+void MainWindow::on_returnButton_clicked()
+{
+    widgetBioAuth->stopAuth();
+    accept(BIOMETRIC_IGNORE);
+
+}
+
 
 /*** end of control's slot ***/
 
@@ -401,6 +409,9 @@ void MainWindow::setUsers(const QStringList &usersList)
     }
 
     ui->cmbUsers->show();
+    ui->cmbUsers->adjustSize();
+    ui->cmbUsers->height();
+
 }
 /*
 void MainWindow::setDetails(const QString &subPid, const QString &callerPid, const QString &actionId,
@@ -478,23 +489,13 @@ QString MainWindow::check_is_pam_message(QString text)
     return QString(str);
 
 }
-void MainWindow::paintEvent1(QPaintEvent *event)
-{
-    QPainter *paint=new QPainter;
-    paint->begin(this);
-    paint->setPen(QPen(Qt::blue,4,Qt::DashLine));//设置画笔形式
-    paint->setBrush(QBrush(Qt::red,Qt::SolidPattern));//设置画刷形式
-    paint->drawRect(33,153,352,36);
-    paint->end();
 
-}
 void MainWindow::setMessage(const QString &text,situation situat)
 {
     // QString message = this->check_is_pam_message(text);
     if(situat == ERROR){
         ui->lblMessage->setStyleSheet("color:red;");
-        QPaintEvent *event;
-        paintEvent1(event);
+
     }else if(situat == TRUE){
         ui->lblMessage->setStyleSheet("");
     }
@@ -507,8 +508,8 @@ void MainWindow::setAuthResult(bool result, const QString &text)
 
     if(!result)
         setMessage("Authentication failed, please try again.", ERROR);
-    //if(text.isEmpty())
-        //setMessage("Authentication failed, please try again.", 0);
+    if(text.isEmpty())
+        setMessage("Authentication failed, please try again.", ERROR);
 
     if(authMode == PASSWORD)
         ui->lblMessage->setText(message);
@@ -666,17 +667,30 @@ void MainWindow::switchWidget(Mode mode)
     case PASSWORD:
         setMinimumWidth(420);
         setMaximumWidth(420);
-        setMinimumHeight(233+ui->lblHeader->height());
-        setMaximumHeight(233+ui->lblHeader->height());
+        setMinimumHeight(231+ui->lblHeader->height());
+        setMaximumHeight(231+ui->lblHeader->height());
+        ui->btnBioAuth->setStyleSheet("QPushButton:hover{color:#3E6CE5;}QPushButton:pressed{border:none;}QPushButton:font-size: 14px;");
+        ui->btnBioAuth->setFlat(true);
         ui->widgetPasswdAuth->show();
         ui->lePassword->setFocus();
         ui->lePassword->setAttribute(Qt::WA_InputMethodEnabled, false);
         ui->btnAuth->show();
+        ui->btnCancel->show();
+        ui->btnBioAuth->show();
+        ui->returnButton->hide();
         break;
     case BIOMETRIC:
-        setMinimumSize(420,405);
-        setMaximumSize(420,442);
-        widgetBioAuth->show();
+        setMinimumWidth(420);
+        setMaximumWidth(420);
+        setMinimumHeight(368+ui->cmbUsers->height());
+        setMaximumHeight(368+ui->cmbUsers->height());
+        widgetBioAuth->show();     
+        ui->btnCancel->hide();
+        ui->lblContent->hide();
+        ui->returnButton->show();
+        ui->returnButton->setFlat(true);
+        ui->returnButton->setStyleSheet("QPushButton:hover{color:#3E6CE5;}QPushButton:pressed{border:none;}QPushButton:font-size: 14px;");
+        ui->btnBioAuth->hide();
         break;
     case DEVICES:
         widgetBioDevices->show();

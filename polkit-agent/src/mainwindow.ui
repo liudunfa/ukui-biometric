@@ -10,20 +10,11 @@
     <height>284</height>
    </rect>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>420</width>
-    <height>284</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>420</width>
-    <height>284</height>
-   </size>
-  </property>
   <property name="windowTitle">
    <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
   </property>
   <property name="windowFilePath">
    <string/>
@@ -79,6 +70,9 @@ font-weight: 500;</string>
       </widget>
      </item>
      <item row="1" column="1">
+      <layout class="QFormLayout" name="bioAuthLayout"/>
+     </item>
+     <item row="2" column="1">
       <widget class="QLabel" name="lblContent">
        <property name="styleSheet">
         <string notr="true">font:  14px &quot;PingFangSC-Regular, PingFang SC&quot;;</string>
@@ -92,6 +86,21 @@ font-weight: 500;</string>
       </widget>
      </item>
      <item row="3" column="1">
+      <widget class="QComboBox" name="cmbUsers">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>36</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font-size: 14px;
+font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
       <widget class="QWidget" name="widgetPasswdAuth" native="true">
        <property name="minimumSize">
         <size>
@@ -165,25 +174,10 @@ font-weight: 400;</string>
        </layout>
       </widget>
      </item>
-     <item row="2" column="1">
-      <widget class="QComboBox" name="cmbUsers">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>36</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">font-size: 14px;
-font-family: PingFangSC-Regular, PingFang SC;
-font-weight: 400;</string>
-       </property>
-      </widget>
-     </item>
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="0,0,0,0">
+    <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="0,0,0,0,0,0">
      <property name="spacing">
       <number>16</number>
      </property>
@@ -201,16 +195,36 @@ font-weight: 400;</string>
      </property>
      <item>
       <widget class="QPushButton" name="btnBioAuth">
+       <property name="minimumSize">
+        <size>
+         <width>96</width>
+         <height>36</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>96</width>
+         <height>36</height>
+        </size>
+       </property>
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">font-size: 14px;
 font-family: PingFangSC-Regular, PingFang SC;
-font-weight: 400;</string>
+font-weight: 400;
+color: rgba(0, 0, 0, 0.85);
+line-height: 20px;</string>
        </property>
        <property name="text">
         <string>Biometric</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -220,12 +234,25 @@ font-weight: 400;</string>
         <enum>Qt::Horizontal</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Maximum</enum>
+        <enum>QSizePolicy::Minimum</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>150</width>
+         <width>0</width>
          <height>36</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>0</width>
+         <height>20</height>
         </size>
        </property>
       </spacer>
@@ -237,6 +264,18 @@ font-weight: 400;</string>
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>96</width>
+         <height>36</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>96</width>
+         <height>36</height>
+        </size>
        </property>
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
@@ -284,6 +323,32 @@ font-weight: 400;</string>
        </property>
        <property name="text">
         <string>Authenticate</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="returnButton">
+       <property name="minimumSize">
+        <size>
+         <width>96</width>
+         <height>36</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>96</width>
+         <height>36</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font-size: 14px;
+font-family: PingFangSC-Regular, PingFang SC;
+font-weight: 400;
+color: #000000;
+line-height: 20px;</string>
+       </property>
+       <property name="text">
+        <string>PushButton</string>
        </property>
       </widget>
      </item>

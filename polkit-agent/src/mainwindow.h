@@ -24,7 +24,7 @@
 #include "biometric.h"
 #include "users.h"
 #include <QLineEdit>
-
+#include "bioauthwidget.h"
 namespace Ui {
 class MainWindow;
 }
@@ -42,7 +42,7 @@ public:
     bool eventFilter(QObject *obj, QEvent *event);
 
     enum Mode{UNDEFINED, PASSWORD, BIOMETRIC, DEVICES};
-
+    enum situation{TRUE, ERROR};
     void setIcon(const QString &iconName);
     void setHeader(const QString &text);
     void setUsers(const QStringList &usersList);
@@ -50,7 +50,7 @@ public:
                     const QString &actionId, const QString &actionDesc,
                     const QString vendorName, const QString vendorUrl);
     void setPrompt(const QString &text, bool echo);
-    enum situation{TRUE, ERROR};
+
     void setMessage(const QString &text, situation situat = TRUE);
     void setAuthResult(bool result, const QString &text="");
     void clearEdit();
@@ -73,6 +73,7 @@ private slots:
     void on_btnDetails_clicked();
     void on_lePassword_returnPressed();
     void on_btnBioAuth_clicked();
+    void on_returnButton_clicked();
     void on_cmbUsers_currentTextChanged(const QString &userName);
     void on_btnCancel_clicked();
     void on_btnAuth_clicked();

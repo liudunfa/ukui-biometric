@@ -39,14 +39,14 @@ public slots:
     void startAuth(uid_t uid, const DeviceInfo &device);
     void setMoreDevices(bool hasMore);
     void stopAuth();
-    void emitSwithToPassword();
+    void emitSwitchToPassword();
+    void on_btnPasswdAuth_clicked();
 signals:
     void switchToPassword();
     void selectDevice();
     void authComplete(uid_t uid, bool ret);
 
-private slots:
-    void on_btnPasswdAuth_clicked();
+private:
     void on_btnMore_clicked();
     void on_btnRetry_clicked();
 
